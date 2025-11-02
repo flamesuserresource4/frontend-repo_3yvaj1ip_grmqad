@@ -6,10 +6,10 @@ import Footer from './components/Footer';
 
 function App() {
   return (
-    <div className="min-h-screen bg-slate-950">
-      <header className="sticky top-0 z-50 backdrop-blur supports-[backdrop-filter]:bg-slate-950/60 bg-slate-950/80 border-b border-white/10">
+    <div className="min-h-screen bg-slate-950 text-white">
+      <header className="sticky top-0 z-50 backdrop-blur bg-slate-950/80 border-b border-white/10">
         <div className="container mx-auto px-6 md:px-10 h-16 flex items-center justify-between">
-          <div className="flex items-center gap-2 text-white font-bold">
+          <div className="flex items-center gap-2 font-bold">
             <span className="inline-block h-2 w-2 rounded-full bg-emerald-400" />
             Emergent
           </div>
