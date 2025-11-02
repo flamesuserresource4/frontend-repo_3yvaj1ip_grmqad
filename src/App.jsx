@@ -17,7 +17,7 @@ function App() {
             <a href="#features" className="hover:text-white">Características</a>
             <a href="#precios" className="hover:text-white">Precios</a>
             <a href="#" className="hover:text-white">Playlists</a>
-            <a href="#" className="rounded-md bg-emerald-500 text-slate-900 font-semibold px-4 py-2 hover:bg-emerald-400">Entrar</a>
+            <a href="#precios" className="rounded-md bg-emerald-500 text-slate-900 font-semibold px-4 py-2 hover:bg-emerald-400">Entrar</a>
           </nav>
         </div>
       </header>

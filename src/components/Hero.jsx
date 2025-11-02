@@ -5,6 +5,7 @@ import { Rocket, Share2, Wallet } from 'lucide-react';
 const Hero = () => {
   return (
     <section className="relative min-h-[80vh] flex items-center overflow-hidden bg-gradient-to-b from-slate-950 via-slate-900 to-slate-950 text-white">
+      {/* Spline background without negative z-index */}
       <div className="absolute inset-0">
         <Spline
           scene="https://prod.spline.design/6Dqk0W4G5t9zJ8uT/scene.splinecode"
@@ -12,8 +13,10 @@ const Hero = () => {
         />
       </div>
 
+      {/* Soft gradient overlay that does not block interactions */}
       <div className="absolute inset-0 bg-gradient-to-b from-slate-950/70 via-slate-950/60 to-slate-950/80 pointer-events-none" />
 
+      {/* Foreground content */}
       <div className="relative z-10 container mx-auto px-6 md:px-10 grid md:grid-cols-2 gap-10 items-center">
         <div className="space-y-6">
           <span className="inline-flex items-center gap-2 rounded-full bg-slate-800/60 ring-1 ring-white/10 px-3 py-1 text-xs md:text-sm">
