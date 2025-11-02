@@ -1,34 +1,41 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import Spline from '@splinetool/react-spline';
 import { Rocket, Share2, Wallet } from 'lucide-react';
 
 const Hero = () => {
+  const [mounted, setMounted] = useState(false);
   const [splineLoaded, setSplineLoaded] = useState(false);
   const [splineError, setSplineError] = useState(false);
 
+  useEffect(() => {
+    // Ensure Spline only mounts on client to avoid any hydration quirks
+    setMounted(true);
+  }, []);
+
   return (
-    <section className="relative min-h-[80vh] flex items-center overflow-hidden bg-gradient-to-b from-slate-950 via-slate-900 to-slate-950">
+    <section className="relative min-h-[80vh] flex items-center overflow-hidden bg-slate-950">
       {/* Background layer: Spline 3D (no negative z-index) */}
       <div className="absolute inset-0 z-0">
-        {!splineError && (
+        {mounted && !splineError && (
           <Spline
             scene="https://prod.spline.design/6Dqk0W4G5t9zJ8uT/scene.splinecode"
             style={{ width: '100%', height: '100%' }}
             onLoad={() => setSplineLoaded(true)}
             onError={() => setSplineError(true)}
+            aria-hidden
           />
         )}
-        {/* Fallback gradient if Spline fails to load */}
-        {(splineError || !splineLoaded) && (
-          <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,rgba(16,185,129,0.15),transparent_60%)]" />
+        {/* Fallback gradient if Spline fails or while loading */}
+        {(!mounted || splineError || !splineLoaded) && (
+          <div className="absolute inset-0 bg-gradient-to-b from-emerald-500/10 via-slate-900 to-slate-950" />
         )}
       </div>
 
       {/* Soft overlay that does not block interactions */}
-      <div className="absolute inset-0 z-[1] bg-gradient-to-b from-slate-950/70 via-slate-950/60 to-slate-950/80 pointer-events-none" />
+      <div className="absolute inset-0 z-[1] bg-[radial-gradient(ellipse_at_top,rgba(16,185,129,0.15),transparent_60%)] pointer-events-none" />
 
       {/* Foreground content */}
-      <div className="relative z-10 container mx-auto px-6 md:px-10 grid md:grid-cols-2 gap-10 items-center text-white">
+      <div className="relative z-10 mx-auto max-w-7xl px-6 md:px-10 grid md:grid-cols-2 gap-10 items-center text-white">
         <div className="space-y-6">
           <span className="inline-flex items-center gap-2 rounded-full bg-slate-800/60 ring-1 ring-white/10 px-3 py-1 text-xs md:text-sm">
             <Rocket size={16} className="text-emerald-400" />
@@ -56,14 +63,14 @@ const Hero = () => {
             </a>
           </div>
 
-          <div className="flex items-center gap-6 pt-4 text-sm text-slate-300">
+          <div className="flex flex-wrap items-center gap-6 pt-4 text-sm text-slate-300">
             <div className="flex items-center gap-2">
               <Wallet size={18} className="text-emerald-400" />
               Web3 listo para creadores
             </div>
             <div className="flex items-center gap-2">
               <Share2 size={18} className="text-emerald-400" />
-              Publicación multi-plataforma
+              Publicación multi‑plataforma
             </div>
           </div>
         </div>
